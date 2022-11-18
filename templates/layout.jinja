@@ -1,0 +1,24 @@
+<html>
+<head>
+    <link rel="stylesheet" href="static/css/style.css"/>
+    <title>
+    {% block title %}{% endblock title %} - </title>
+    {% block html_head %}
+    
+    {% endblock html_head %}
+    <link href="static/js/tabulator-master/dist/css/tabulator_midnight.min.css" rel="stylesheet">
+    <script type="text/javascript" src="static/js/tabulator-master/dist/js/tabulator.js"></script>
+</head>
+<body>
+    <div id="content">{% block content %}
+    
+    {% endblock content %}</div>
+
+    <div id="footer">
+    {% block footer %}
+        &copy; Copyright 2022 by Daniel Guerrera
+    {% endblock footer %}
+    </div>
+</body>
+
+</html>

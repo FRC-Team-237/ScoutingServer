@@ -1,0 +1,53 @@
+{% extends "layout.jinja" %}
+{% block title %}
+    Money Ball
+{% endblock title %}
+{% block html_head %}
+
+{% endblock html_head %}
+
+{% block content %}
+    <div class="ranking">
+    <h3>
+        Money Ball Calculations 
+    </h3>
+    <div id="moneyballTable"></div>
+    <script>
+    var table = new Tabulator("#moneyballTable", {
+    height:"511px",
+    data: [
+        {% for result in results %}
+            {
+                "team_number" : {{result.team_number}},
+                "avg_auto_score" : {{"%.2f" | format(result.avg_auto_score)}},  
+                "std_auto" : {{"%.2f" | format(result.std_auto)}},        
+                "avg_tele_score" : {{"%.2f" | format(result.avg_tele_score)}},  
+                "std_tele" : {{"%.2f" | format(result.std_tele)}}, 
+                "avg_hang_4_pts" : {{"%.2f" | format(result.avg_hang_4_pts)}}, 
+                "avg_hang_3_pts" : {{"%.2f" | format(result.avg_hang_3_pts)}},
+                "avg_hang_2_pts" : {{"%.2f" | format(result.avg_hang_2_pts)}}, 
+                "avg_end_game" : {{"%.2f" | format(result.avg_end_game)}},
+                "std_end_game" : {{"%.2f" | format(result.std_end_game)}},
+                "avg_total_points" : {{"%.2f" | format(result.avg_total_points)}},
+                "std_total_points" : {{"%.2f" | format(result.std_total_points)}}
+            }{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ],
+    columns:[
+    {title:"Team Number", field:"team_number", sorter: "number" },
+    {title:"Average Auto Score", field:"avg_auto_score", sorter: "number" },
+    {title:"Auto Standard Dev", field:"std_auto", sorter: "number" },
+    {title:"Average Tele-Op Score", field:"avg_tele_score", sorter: "number" },
+    {title:"Tele op STD", field:"std_tele", sorter: "number" },
+    {title:"Average hang 4", field:"avg_hang_4_pts", sorter: "number" },
+    {title:"Average hang 3", field:"avg_hang_3_pts", sorter: "number" },
+    {title:"Average hang 2", field:"avg_hang_2_pts", sorter: "number" },
+    {title:"Average End Game", field:"avg_end_game", sorter: "number" },
+    {title:"STD End Game", field:"std_end_game", sorter: "number" },
+    {title:"Avg Total Pts", field:"avg_total_points", sorter: "number" },
+    {title:"STD Total Points", field:"std_total_points", sorter: "number" }
+    ]
+});
+    </script>
+    </div>
+{% endblock content %}
