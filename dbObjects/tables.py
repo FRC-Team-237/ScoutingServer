@@ -4,7 +4,7 @@ from sqlalchemy import (BOOLEAN, VARCHAR, Column, Integer, String,
 from server import db
 
 
-class MatchResults(db.Model):
+class MatchResult(db.Model):
     __tablename__ = "match_results"
     __table_args__ = {
         'autoload':True,
@@ -37,3 +37,13 @@ class MoneyBall(db.Model):
         'autoload_with': db.engine,   
     }
     team_number = Column(Integer,primary_key='true')
+
+class Settings(db.Model):
+    __tablename__ = "server_settings_table"
+    __table_args__ = {
+        'autoload':True,
+        'autoload_with': db.engine,   
+    }
+    oid = Column(Integer,primary_key=True)
+    scouting_app_comp_key = Column(String)
+    blue_alliance_comp_key = Column(String)

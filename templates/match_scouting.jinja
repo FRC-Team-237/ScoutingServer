@@ -1,0 +1,66 @@
+{% extends "layout.jinja" %}
+{% block title %}
+    Money Ball
+{% endblock title %}
+{% block html_head %}
+
+{% endblock html_head %}
+
+{% block content %}
+    <h2>Match Scouting</h2>
+    <h3 class="error">{{validation_error}}</h3>
+    <form action="" method="POST">
+        <div id="matchInfo">
+            <p>
+                {{form.match_number.label}} : {{form.match_number(size=3)}}
+            </p>
+            <p>
+                {{form.alliance_station.label}} : {{form.alliance_station}}
+            </p>
+            <p> 
+                {{form.team_number.label}} : {{form.team_number(size = 5)}}
+            </p>
+            
+        </div>
+        <div id="matchResults">
+            <p>
+                {{form.auto_low_score.label}} : {{form.auto_low_score}}
+            </p>
+            <p>
+                {{form.auto_high_score.label}} : {{form.auto_high_score}}
+            </p>
+            <p>
+                {{form.tele_op_low_score.label}} : {{form.tele_op_low_score}}
+            </p>
+            <p>
+                {{form.tele_op_high_score.label}} : {{form.tele_op_high_score}}
+            </p>
+            <p>
+                {{form.hang_lvl_1.label}} : {{form.hang_lvl_1}}
+            </p>
+            <p>
+                {{form.hang_lvl_2.label}} : {{form.hang_lvl_2}}
+            </p>
+            <p>
+                {{form.hang_lvl_3.label}} : {{form.hang_lvl_3}}
+            </p>
+            <p>
+                {{form.hang_lvl_4.label}} : {{form.hang_lvl_4}}
+            </p>
+            <p>
+                {{form.played_defence.label}} : {{form.played_defence}}
+            </p>
+            <p>
+                {{form.notes.label}} : {{form.notes}}
+            </p>
+            <p>
+                {{form.won_match.label}} : {{form.won_match}}
+            </p>
+        </div>
+        <div id="submit">
+            <p>
+                {{form.submit()}}
+            </p>
+        </div>
+    </form>
+{% endblock content %}
