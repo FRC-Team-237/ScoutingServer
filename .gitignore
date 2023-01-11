@@ -4,3 +4,4 @@ dev_env
 static/js/tabulator-master
 *.pyc
 *.pyo
+*.*.pyc
