@@ -4,12 +4,12 @@ from sqlalchemy import (BOOLEAN, VARCHAR, Column, Integer, String,
 from server import db
 
 
-class MatchResult(db.Model):
+class MatchResult(db.Model):  # type: ignore 
     __tablename__ = "match_results"
     __table_args__ = {
         'autoload':True,
-        'autoload_with': db.engine
-        
+        'autoload_with': db.engine,
+        'schema' : 'scouting_db'
     }
     result_oid = Column(Integer,primary_key=True)
     match_number = Column(Integer)
@@ -30,19 +30,21 @@ class MatchResult(db.Model):
     comp_loc = Column(VARCHAR(45))
     UniqueConstraint('match_number','team_number','comp_loc') 
 
-class MoneyBall(db.Model):
+class MoneyBall(db.Model): # type: ignore 
     __tablename__ = "money_ball_vw"
     __table_args__ = {
         'autoload':True,
-        'autoload_with': db.engine,   
+        'autoload_with': db.engine,
+        'schema' : 'scouting_db'   
     }
     team_number = Column(Integer,primary_key='true')
 
-class Settings(db.Model):
+class Settings(db.Model): # type: ignore 
     __tablename__ = "server_settings_table"
     __table_args__ = {
         'autoload':True,
-        'autoload_with': db.engine,   
+        'autoload_with': db.engine,
+        'schema' : 'scouting_db'  
     }
     oid = Column(Integer,primary_key=True)
     scouting_app_comp_key = Column(String)
