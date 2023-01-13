@@ -21,4 +21,6 @@ app = create_app('devel.cfg')
 db = SQLAlchemy(app)
 with app.app_context():
     register_bluprints(app)
+    from dbObjects import tablesV2
+    db.create_all()
         
