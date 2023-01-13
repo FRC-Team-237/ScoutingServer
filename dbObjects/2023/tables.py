@@ -5,25 +5,19 @@ from server import db
 
 class Competition(db.Model): # type: ignore
     __tablename__ = "competition_tb"
-    __table_args__ = {
-        'schema' : 'scouting_2023'
-    }
+    
     id  = db.Column('id',db.Integer, primary_key = True)
     competition_name = db.Column('competiton_name',db.String)
 
 class TeamInfo(db.Model): #type: ignore
     __tablename__ = "team_info_tb"
-    __table_args__ = {
-        'schema' : 'scouting_2023'
-    }
+    
     id  = db.Column('id',db.Integer, primary_key = True)
     teamNumber = db.Column('team_number',db.Integer)
     
 class TeamWatchResult(db.Model): # type: ignore
     __tablename__ = "team_watch_tb"
-    __table_args__ = {
-        'schema' : 'scouting_2023'
-    }
+    
     id  = db.Column('id',db.Integer, primary_key = True)
     competition_id = db.Column('competition_id',db.Integer,ForeignKey('competition_tb.id'))
     location = db.Column('location', db.String)
@@ -35,9 +29,7 @@ class TeamWatchResult(db.Model): # type: ignore
 
 class MatchWatchResult(db.Model): # type: ignore
     __tablename__ = 'match_watch_result_tb'
-    __table_args__ = {
-        'schema' : 'scouting_2023'
-    }
+    
     id  = db.Column('id',db.Integer, primary_key = True)
     auto_mobility = db.Column('auto_mobility',db.BOOLEAN)
     auto_charge = db.Column('auto_charge', db.String)
@@ -48,9 +40,7 @@ class MatchWatchResult(db.Model): # type: ignore
     
 class ScoringRow(db.Model): # type: ignore
     __tablename__ = 'scoring_row_tb'
-    __table_args__ = {
-        'schema' : 'scouting_2023'
-    }
+    
     id  = db.Column('id',db.Integer, primary_key = True)
     match_result_id = db.Column('match_result_id',ForeignKey(MatchWatchResult.id))
     row_position = db.Column('row_position', db.String)
