@@ -17,8 +17,8 @@ class MatchWatchResult(db.Model): # type: ignore
     auto_charge = db.Column('auto_charge', db.String(6))
     end_charge = db.Column('end_charge', db.String(6))
     end_parked = db.Column('end_parked',db.BOOLEAN)
-    scoring_rows = db.relationship('ScoringRow',back_populates='id')
-    watch_result = db.relationship('TeamWatchResult',back_populates='result_id')    
+    scoring_rows = db.relationship('ScoringRow',back_populates='match_result')
+    watch_result = db.relationship('TeamWatchResult',back_populates='result')    
 
 class TeamWatchResult(db.Model): # type: ignore
     __tablename__ = "team_watch_tb"
@@ -30,6 +30,7 @@ class TeamWatchResult(db.Model): # type: ignore
     notes = db.Column('notes', db.String(240))
     win = db.Column('win',db.BOOLEAN)
     result_id = db.Column('result_id',db.Integer, ForeignKey(MatchWatchResult.id))
+    result = db.relationship('MatchWatchResult',back_populates='watch_result')
     
 class ScoringRow(db.Model): # type: ignore
     __tablename__ = 'scoring_row_tb'

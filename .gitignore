@@ -5,3 +5,4 @@ static/js/tabulator-master
 *.pyc
 *.pyo
 *.*.pyc
+templates/scratch.json
