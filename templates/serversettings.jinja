@@ -1,0 +1,24 @@
+{% extends "layout.jinja" %}
+{% block title %}
+    Server Settings
+{% endblock title %}
+{% block html_head %}
+
+{% endblock html_head %}
+
+{% block content %}
+    <h2>Server Settings</h2>
+    <h3 class="error">{{validation_error}}</h3>
+    <form action="" method="POST">
+        <div id="compLoc">
+            <p>
+                {{form.competition_location.label}} : {{form.competition_location}}
+            </p>
+        </div>
+        <div id="submit">
+            <p>
+                {{form.submit()}}
+            </p>
+        </div>
+    </form>
+{% endblock content %}

@@ -12,6 +12,8 @@ def create_app(config: str):
 def register_bluprints(app):
     from blueprints.stats import stats
     from blueprints.scouting import scouting
+    from blueprints.settings import settings
+    app.register_blueprint(settings)
     app.register_blueprint(stats)
     app.register_blueprint(scouting)
     return
