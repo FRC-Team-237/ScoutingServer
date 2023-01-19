@@ -8,6 +8,16 @@
 
 {% block content %}
     <h2>Server Settings</h2>
+    <div>
+        <h3>Current Settings</h3>
+        <div>
+            <p>
+            Current Competition Index: {{settings.scouting_app_comp_key}}
+            </p>
+        </div>
+    </div>
+    
+    <h3>Update Settings</h3>
     <h3 class="error">{{validation_error}}</h3>
     <form action="" method="POST">
         <div id="compLoc">
@@ -15,10 +25,14 @@
                 {{form.competition_location.label}} : {{form.competition_location}}
             </p>
         </div>
+        <div id = "setComp">
+            {{form.set_comp.label}} : {{form.set_comp}}
+        </div>
         <div id="submit">
             <p>
                 {{form.submit()}}
             </p>
         </div>
+        
     </form>
 {% endblock content %}

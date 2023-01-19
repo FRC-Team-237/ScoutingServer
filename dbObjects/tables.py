@@ -1,5 +1,5 @@
 from sqlalchemy import (BOOLEAN, VARCHAR, Column, Integer, String,
-                        UniqueConstraint)
+                        UniqueConstraint, ForeignKey)
 
 from server import db
 
@@ -47,5 +47,5 @@ class Settings(db.Model): # type: ignore
         'schema' : 'scouting_db'  
     }
     oid = Column(Integer,primary_key=True)
-    scouting_app_comp_key = Column(String)
+    scouting_app_comp_key = Column(Integer,ForeignKey('competition_tb.id'))
     blue_alliance_comp_key = Column(String)

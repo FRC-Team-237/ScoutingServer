@@ -7,7 +7,7 @@ class Competition(db.Model): # type: ignore
     __tablename__ = "competition_tb"
     
     id  = db.Column('id',db.Integer, primary_key = True)
-    competition_name = db.Column('competiton_name',db.String(4))
+    competition_name = db.Column('competiton_name',db.String(4),nullable=False,unique=True)
 
 class MatchWatchResult(db.Model): # type: ignore
     __tablename__ = 'match_watch_result_tb'
