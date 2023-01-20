@@ -17,7 +17,6 @@ settings = Blueprint('settings',__name__,template_folder='templates')
 
 @settings.route('/settings', methods=['GET', 'POST'])
 def scoutmatch():
-    
     form = SettingsForm()
     form.set_comp.query = db.session.query(Competition).all()
     settings  = db.session.query(Settings).first()
@@ -27,7 +26,6 @@ def scoutmatch():
             if comp_loc:
                 db.session.add(Competition(competition_name=comp_loc))
             if request.form['set_comp']:
-                
                 if settings:
                     settings.scouting_app_comp_key = request.form['set_comp']
                 else:

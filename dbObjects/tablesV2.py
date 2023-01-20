@@ -14,9 +14,8 @@ class MatchWatchResult(db.Model): # type: ignore
     
     id  = db.Column('id',db.Integer, primary_key = True)
     auto_mobility = db.Column('auto_mobility',db.BOOLEAN)
-    auto_charge = db.Column('auto_charge', db.String(6))
-    end_charge = db.Column('end_charge', db.String(6))
-    end_parked = db.Column('end_parked',db.BOOLEAN)
+    auto_charge = db.Column('auto_charge', db.Integer)
+    end_charge = db.Column('end_charge', db.Integer)
     scoring_rows = db.relationship('ScoringRow',back_populates='match_result')
     watch_result = db.relationship('TeamWatchResult',back_populates='result')    
 

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<title>Team 237 Scouting</title>
+		<link rel="icon" type="image/x-icon" href="static/img/robot.ico">
+		<link rel="manifest" href="manifest.json">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
+
+		<link href="static/css/style.css" rel="stylesheet">
+		<script>navigator.serviceWorker.register("service-worker.js")</script> 
+		<script src="static/js/main.js"></script>
+	</head>
+	
+	<body class="has-navbar-fixed-top" onload="Init();">
+		<nav class="navbar is-fixed-top background-primary has-shadow">
+			<div class="navbar-item has-text-centered">
+				<h1 class="title title-gradient has-text-white" style="font-family: Arial">Team 237 Scouting</h1>
+			</div>
+		</nav>
+		<form id="match-result-form">
+			<section class="section">
+				<button type="button" class="button is-centered is-small is-size-6 is-responsive is-rounded js-modal-trigger" data-target="help-panel">?</button><br><br>
+				<div class="columns">
+					<div class="column">
+						<label class="label" id="match-number-label">Match Number</label>
+						<div class="field">
+							<div class="control">
+								<!-- MATCH NUMBER -->
+								<input id="match-number" class="input is-rounded" type="number" min="1" step="1" pattern="\d*" required placeholder="Match">
+							</div>
+						</div>
+					</div>
+					<div class="column">
+						<label class="label" id="team-number-label">Team Number</label>
+						<div class="field has-addons">
+							
+							<div class="control is-expanded">
+								<!-- TEAM NUMBER -->
+								<input id="team-number" class="input is-rounded" type="number" min="1" step="1" pattern="\d*" required placeholder="0000">
+							</div>
+
+							<div class="control">
+								<div class="checkbox-wrapper">
+									<!-- ALLIANCE COLOR -->
+									<input id="alliance-color" type="checkbox" class="checkbox">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<fieldset class="box">
+					<legend class="label has-text-centered">Match Results</legend>
+
+					<!-- MATCH RESULTS -->
+					<table class="table mx-auto has-text-centered">
+						<tbody>
+							<tr>
+								<td class="score-box" name="scorehigh0" data-scoretype="cube" data-score="none"><div class="score-box-wrapper"></div></td>
+								<td class="score-box" name="scorehigh1" data-scoretype="cone" data-score="none"><div class="score-box-wrapper"></div></td>
+								<td class="score-box" name="scorehigh2" data-scoretype="cube" data-score="none"><div class="score-box-wrapper"></div></td>
+								<td class="score-box" name="scorehigh3" data-scoretype="cube" data-score="none"><div class="score-box-wrapper"></div></td>
+								<td class="score-box" name="scorehigh4" data-scoretype="cone" data-score="none"><div class="score-box-wrapper"></div></td>
+								<td class="score-box" name="scorehigh5" data-scoretype="cube" data-score="none"><div class="score-box-wrapper"></div></td>
+								<td class="score-box" name="scorehigh6" data-scoretype="cube" data-score="none"><div class="score-box-wrapper"></div></td>
+								<td class="score-box" name="scorehigh7" data-scoretype="cone" data-score="none"><div class="score-box-wrapper"></div></td>
+								<td class="score-box" name="scorehigh8" data-scoretype="cube" data-score="none"><div class="score-box-wrapper"></div></td>
+							</tr>
+							<tr>
+								<td class="score-box" name="scoremid0" data-scoretype="cube" data-score="none"><div class="score-box-wrapper"></div></td>
+								<td class="score-box" name="scoremid1" data-scoretype="cone" data-score="none"><div class="score-box-wrapper"></div></td>
+								<td class="score-box" name="scoremid2" data-scoretype="cube" data-score="none"><div class="score-box-wrapper"></div></td>
+								<td class="score-box" name="scoremid3" data-scoretype="cube" data-score="none"><div class="score-box-wrapper"></div></td>
+								<td class="score-box" name="scoremid4" data-scoretype="cone" data-score="none"><div class="score-box-wrapper"></div></td>
+								<td class="score-box" name="scoremid5" data-scoretype="cube" data-score="none"><div class="score-box-wrapper"></div></td>
+								<td class="score-box" name="scoremid6" data-scoretype="cube" data-score="none"><div class="score-box-wrapper"></div></td>
+								<td class="score-box" name="scoremid7" data-scoretype="cone" data-score="none"><div class="score-box-wrapper"></div></td>
+								<td class="score-box" name="scoremid8" data-scoretype="cube" data-score="none"><div class="score-box-wrapper"></div></td>
+							</tr>
+							<tr>
+								<td class="score-box" name="scorelow0" data-scoretype="conecube" data-score="none"><div class="score-box-wrapper"></div></td>
+								<td class="score-box" name="scorelow1" data-scoretype="conecube" data-score="none"><div class="score-box-wrapper"></div></td>
+								<td class="score-box" name="scorelow2" data-scoretype="conecube" data-score="none"><div class="score-box-wrapper"></div></td>
+								<td class="score-box" name="scorelow3" data-scoretype="conecube" data-score="none"><div class="score-box-wrapper"></div></td>
+								<td class="score-box" name="scorelow4" data-scoretype="conecube" data-score="none"><div class="score-box-wrapper"></div></td>
+								<td class="score-box" name="scorelow5" data-scoretype="conecube" data-score="none"><div class="score-box-wrapper"></div></td>
+								<td class="score-box" name="scorelow6" data-scoretype="conecube" data-score="none"><div class="score-box-wrapper"></div></td>
+								<td class="score-box" name="scorelow7" data-scoretype="conecube" data-score="none"><div class="score-box-wrapper"></div></td>
+								<td class="score-box" name="scorelow8" data-scoretype="conecube" data-score="none"><div class="score-box-wrapper"></div></td>
+							</tr>
+						</tbody>
+					</table>
+					
+				</fieldset>
+				
+				<div class="columns">
+					<div class="column">
+						<fieldset class="box">
+							<legend class="label has-text-centered">Autonomous</legend>
+							
+							<label class="checkbox mb-3">
+								<!-- MOBILITY -->
+								<input id="mobility" type="checkbox"> Mobility
+							</label>
+
+							<div>
+								<p>Charge Status</p>
+								<!-- AUTO CHARGE STATUS -->
+								<label class="radio">
+									<input type="radio" name="charge-status-auto" id="charge-status-auto-none" checked> None
+								</label>
+								<label class="radio">
+									<input type="radio" name="charge-status-auto" id="charge-status-auto-docked"> Docked
+								</label>
+								<label class="radio">
+									<input type="radio" name="charge-status-auto" id="charge-status-auto-engaged"> Engaged
+								</label>
+							</div>
+						</fieldset>
+					</div>
+					<div class="column">
+						<fieldset class="box">
+							<legend class="label has-text-centered">Endgame</legend>
+
+							<div>
+								<p>Charge Status</p>
+								<!-- END CHARGE STATUS -->
+								<label class="radio">
+									<input type="radio" name="charge-status-end" id="charge-status-end-none" checked> None
+								</label>
+								<label class="radio">
+									<input type="radio" name="charge-status-end" id="charge-status-end-docked"> Docked
+								</label>
+								<label class="radio">
+									<input type="radio" name="charge-status-end" id="charge-status-end-engaged"> Engaged
+								</label>
+							</div>
+						</fieldset>
+					</div>
+				</div>
+				<div class="box">
+					<label class="checkbox mb-3">
+						<!-- WIN STATUS -->
+						<input id="win-status" type="checkbox"> Alliance won
+					</label>
+
+					<p>Notes</p>
+					<div class="control">
+						<!-- NOTES -->
+						<textarea id="notes-field" class="textarea has-fixed-size"></textarea>
+					</div>
+				</div>
+				<button type="button" class="button is-fullwidth is-warning is-rounded js-modal-trigger" data-target="confirm-submit-panel">
+					Submit
+				</button>
+			</section>
+		</form>
+
+		<div id="confirm-submit-panel" class="modal">
+			<div class="modal-background"></div>
+			<div class="modal-card">
+				<header class="modal-card-head">
+					<p class="modal-card-title">Confirm submission</p>
+					<button class="delete"></button>
+				</header>
+				<section class="modal-card-body">
+					Please check over your scouting data before submitting!
+					<div id="form-errors" class="content"></div>
+				</section>
+				<footer class="modal-card-foot">
+					<!-- SUBMIT -->
+					<button id="submit-results" class="button is-warning">Submit</button>
+					<button type="button" class="button">Cancel</button>
+				</footer>
+			</div>
+		</div>
+		<button class="modal-close is-large"></button>
+
+		<div id="help-panel" class="modal">
+			<div class="modal-background"></div>
+			<div class="modal-card">
+				<header class="modal-card-head">
+					<p class="modal-card-title">Help</p>
+					<button class="delete"></button>
+				</header>
+				<section class="modal-card-body">
+					<div class="content">
+						<blockquote>
+							<h5 class="title is-5">Autonomous Period</h5>
+							<p class="subtitle is-6">The first phase of each match is 15 seconds long and called the Autonomous Period (auto). During auto, robots operate without any drive team control or input.</p>
+						</blockquote>
+						<blockquote>
+							<h5 class="title is-5">Teleoperated Period</h5>
+							<p class="subtitle is-6">The second phase of each match is the remaining 2:15 and called the Teleoperated Period. During this phase, drivers remotely operate robots to retrieve and score game pieces.</p>
+						</blockquote>
+						<blockquote>
+							<h5 class="title is-5">Endgame</h5>
+							<p class="subtitle is-6">The final 30 seconds of the teleop stage is the endgame, during which robots attempt to park, dock on, and/or engage with their alliance's charge station or continue to score game pieces.</p>
+						</blockquote>
+						<blockquote>
+							<h5 class="title is-5">Mobility</h5>
+							<p class="subtitle is-6">The award given to a robot whose bumpers have completely left its community at any point <strong>during auto</strong>.</p>
+						</blockquote>
+						<blockquote>
+							<h5 class="title is-5">Charge Status</h5>
+							<p class="subtitle is-6">A robot earns points for its alliance by docking on or engaging with their charge station.</p>
+							<p class="subtitle is-6">A robot is <strong>docked</strong> if it is contacting only the charge station and/or other items also directly or transitively fully supported by the charge station.</p>
+							<p class="subtitle is-6">A robot is <strong>engaged</strong> if the charge station is level and all alliance robots contacting the charge station are docked.</p>
+						</blockquote>
+					</div>
+				</section>
+				<footer class="modal-card-foot"></footer>
+			</div>
+		</div>
+		<button class="modal-close is-large"></button>
+
+		<!-- <pre id="json-preview" style="tab-size: 4"></pre> -->
+	</body>
+</html>
