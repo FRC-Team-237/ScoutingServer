@@ -2,21 +2,25 @@
 <head>
     <link rel="stylesheet" href="static/css/style.css"/>
     <title>
-    {% block title %}{% endblock title %} - </title>
+    {% block title %}{% endblock title %} - 
+    </title>
     {% block html_head %}
     
     {% endblock html_head %}
     <link href="static/js/tabulator-master/dist/css/tabulator_midnight.min.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="static/img/robot.ico">
     <script type="text/javascript" src="static/js/tabulator-master/dist/js/tabulator.js"></script>
+    <script>navigator.serviceWorker.register("service-worker.js")</script> 
+	<script src="static/js/main.js"></script>
 </head>
-<body>
+<body class="has-navbar-fixed-top" onload="Init();">
     <div id="content">{% block content %}
     
     {% endblock content %}</div>
 
     <div id="footer">
     {% block footer %}
-        &copy; Copyright 2022 by Daniel Guerrera
+        &copy; Copyright 2022 Team 237
     {% endblock footer %}
     </div>
 </body>
