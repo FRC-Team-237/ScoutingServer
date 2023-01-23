@@ -1,0 +1,106 @@
+body {
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    color: #fdfaea;
+    background-color: #3d3d3d;
+  }
+  
+  a {
+    color: #e8c702;
+  }
+  footer {
+    width: max-content;
+    padding: 10px; 
+    align-items: center;
+  }
+  h1.appName {
+    color: goldenrod;
+    text-shadow: 3px 3px 1px #000000;
+  }
+  h2 {
+    text-shadow: 2px 2px 1px #000000;
+  }
+  h3 {
+    text-shadow: 2px 2px 1px #000000;
+  }
+  div.container {
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  div.stats {
+    border: 1px solid;
+    border-radius: 4px;
+    background-color: #383838;
+    min-height: 10%;
+    min-width: 10%;
+    float: left;
+    padding: 7px;
+    margin-right: 10px;
+  } 
+  table.statTable{
+    border: 0px;
+  
+  }
+  td.stat {
+    background-color: transparent;
+  
+  }
+  table.resultsTable {
+    border: 0px; 
+    border-radius: 4px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    width: 100%;
+    text-align: center;
+    text-shadow: 1px 1px 1px #000000;
+  }
+  th {
+    border-bottom: 1px solid;
+    font-size: medium;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 4px;
+    padding-right: 4px;
+    text-align: center;
+    text-shadow: 1px 1px 1px #000000;
+    
+  }
+  td.result {
+    font-size: medium;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    border-bottom: 1px solid;
+    
+    min-width: 20px;
+    
+  }
+  div.strengthsCloud {
+    border: 1px solid;
+    border-radius: 4px;
+    background-color: #7c7c7c;
+    max-width: 50%;
+    box-shadow: 1px 1px 3px #000000;
+  }
+  div.ranking {
+    border: 1px solid;
+    border-radius: 4px;
+    background-color: #7c7c7c;
+    box-shadow: 1px 1px 3px #000000;
+  }
+  ul.strengthsList{
+    list-style-type: none;
+    padding: 10px;
+  }
+  li.positive {
+    color:lightgreen; 
+    text-shadow: 1px 1px 2px darkgreen;
+  }
+  li.negative {
+    color: lightcoral;
+    text-shadow: 1px 1px 2px darkred;
+  }
+  div.chartContainer {
+    max-width: 500px;
+    max-height: 400px;
+  }

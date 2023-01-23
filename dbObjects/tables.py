@@ -1,16 +1,12 @@
-from sqlalchemy import (BOOLEAN, VARCHAR, Column, Integer, String,
-                        UniqueConstraint)
+from sqlalchemy import (BOOLEAN, VARCHAR, Column, Integer, String, Float,
+                        UniqueConstraint, ForeignKey)
 
 from server import db
 
 
-class MatchResult(db.Model):
+class MatchResult(db.Model):  # type: ignore 
     __tablename__ = "match_results"
-    __table_args__ = {
-        'autoload':True,
-        'autoload_with': db.engine
-        
-    }
+    
     result_oid = Column(Integer,primary_key=True)
     match_number = Column(Integer)
     team_number = Column(Integer)
@@ -30,20 +26,17 @@ class MatchResult(db.Model):
     comp_loc = Column(VARCHAR(45))
     UniqueConstraint('match_number','team_number','comp_loc') 
 
-class MoneyBall(db.Model):
+class MoneyBall(db.Model): # type: ignore 
     __tablename__ = "money_ball_vw"
-    __table_args__ = {
-        'autoload':True,
-        'autoload_with': db.engine,   
-    }
     team_number = Column(Integer,primary_key='true')
-
-class Settings(db.Model):
-    __tablename__ = "server_settings_table"
-    __table_args__ = {
-        'autoload':True,
-        'autoload_with': db.engine,   
-    }
-    oid = Column(Integer,primary_key=True)
-    scouting_app_comp_key = Column(String)
-    blue_alliance_comp_key = Column(String)
+    avg_auto_score = Column(Float)
+    std_auto = Column(Float)
+    avg_tele_score = Column(Float) 
+    std_tele = Column(Float)
+    avg_hang_4_pts   = Column(Float) 
+    avg_hang_3_pts   = Column(Float) 
+    avg_hang_2_pts   = Column(Float) 
+    avg_end_game     = Column(Float)
+    std_end_game     = Column(Float)
+    avg_total_points = Column(Float)
+    std_total_points = Column(Float)
