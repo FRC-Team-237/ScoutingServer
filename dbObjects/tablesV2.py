@@ -3,6 +3,12 @@ from sqlalchemy import (BOOLEAN, VARCHAR, Column, Integer, String,
 
 from server import db
 
+class Settings(db.Model): # type: ignore 
+    __tablename__ = "server_settings_table"
+    oid = Column(Integer,primary_key=True)
+    scouting_app_comp_key = Column(Integer,ForeignKey('competition_tb.id'))
+    blue_alliance_comp_key = Column(String(4))
+
 class Competition(db.Model): # type: ignore
     __tablename__ = "competition_tb"
     

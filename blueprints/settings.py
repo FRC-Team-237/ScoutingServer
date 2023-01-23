@@ -2,8 +2,8 @@ from server import db
 from flask import Blueprint, abort, current_app, render_template, request
 from wtforms import Form, BooleanField, StringField, validators, IntegerField, SubmitField, TextAreaField, SelectField
 from wtforms_sqlalchemy.orm import QuerySelectField
-from dbObjects.tables import MatchResult, Settings
-from dbObjects.tablesV2 import Competition
+from dbObjects.tables import MatchResult
+from dbObjects.tablesV2 import Competition, Settings
 from sqlalchemy import exc
 class SettingsForm(Form):
     competition_location = StringField(u'Add Comp Location', [validators.length(max=4)])

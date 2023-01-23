@@ -4,9 +4,18 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 
-def create_app(config: str):
+def create_app(config=None):
+    global db
     app = Flask(__name__ ,instance_relative_config=True)
-    app.config.from_pyfile(config)
+    if not config:
+        app.config.from_pyfile('devel.cfg')
+    else:
+        app.config.from_pyfile(config)
+    db = SQLAlchemy(app)
+    with app.app_context():
+        register_bluprints(app)
+        from dbObjects import tablesV2, tables
+        db.create_all()
     return app
 
 def register_bluprints(app):
@@ -17,12 +26,10 @@ def register_bluprints(app):
     app.register_blueprint(stats)
     app.register_blueprint(scouting)
     return
+def register_V2_blueprints(app):
+    from blueprints.scouting import scouting
+    app.register_blueprint(scouting)
 
 
-app = create_app('devel.cfg')
-db = SQLAlchemy(app)
-with app.app_context():
-    register_bluprints(app)
-    from dbObjects import tablesV2
-    db.create_all()
-        
+
+    

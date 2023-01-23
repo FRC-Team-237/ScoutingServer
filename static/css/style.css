@@ -130,3 +130,9 @@ tr {
 	content: 'B';
 	color: #0066b3;
 }
+div.error {
+	color : red
+}
+div.success{
+	color: green
+}
