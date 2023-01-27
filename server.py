@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-
+from flask_cors import CORS
 
 
 
@@ -12,9 +12,10 @@ def create_app(config=None):
     else:
         app.config.from_pyfile(config)
     db = SQLAlchemy(app)
+    CORS(app)
     with app.app_context():
         register_bluprints(app)
-        from dbObjects import tablesV2, tables
+        from dbObjects import tablesV2
         db.create_all()
     return app
 
