@@ -35,7 +35,7 @@ def scoutmatch():
             print(err)
             db.session.rollback()
             return render_template('serversettings.jinja',form=form,validation_error="This competition already exits!",settings=settings)
-        except:
+        except :
             db.session.rollback()
             return render_template('serversettings.jinja',form=form,validation_error="Form Error!",settings=settings)
     elif request.method == 'POST' and not form.validate():
