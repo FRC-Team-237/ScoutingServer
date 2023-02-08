@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Scouting Heatmap</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<meta charset="UTF-8">
+		<link href="../static/css/bulma.min.css" rel="stylesheet">
+		<link href="../static/css/analysis_style.css" rel="stylesheet">
+		<script src="../static/js/analysis.js"></script>
+	</head>
+	<body>
+		<section class="section is-flex is-align-items-center is-flex-direction-column">
+
+			<h3 class="title is-3">Scouting Heatmap</h3>
+
+			<div class="content" style="width: 480px">
+				<div class="file is-centered is-warning">
+					<label class="file-label">
+						<input id="scouting-data-upload" class="file-input" type="file" name="scouting-data">
+						<span class="file-cta">
+							<span class="file-icon">📊</span>
+							<span class="file-label">Upload scouting data JSON</span>
+						</span>
+					</label>
+				</div>
+				<div class="has-text-centered">
+					<p id="file-response-text" class="subtitle is-6 my-3">No file selected</p>
+				</div>
+
+				<div class="columns my-0">
+					<div class="column">
+						<label for="team-number">Team Number</label><br>
+
+						<div class="select is-fullwidth is-rounded is-info">
+							<select id="team-select"></select>
+						</div>
+					</div>
+
+					<div class="column">
+						<label for="match-period">Match Period</label><br>
+
+						<div class="select is-fullwidth is-rounded is-info">
+							<select id="period-select">
+								<option value="auto">Just Auto</option>
+								<option value="teleop">Just Teleop</option>
+								<option value="both">Both</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<table>
+				{% with score_names = ['cube', 'cone'] %}
+				{% for row in ["top", "mid", "low"]  %}
+					<tr class="score-row">
+						{% for i in range(9) %}
+							{% if row in ["top", "mid"] %}
+								{% with score_type = (i % 3 - 1)|abs %}
+								<td id="score{{row}}{{i}}" data-scoretype="{{score_names[score_type]}}">
+									{# {{row}}[{{i}}] #}
+								</td>
+								{% endwith %}
+							{% else %}
+								<td id="score{{row}}{{i}}" data-scoretype="conecube">
+									{# {{row}}[{{i}}] #}
+								</td>
+							{% endif %}
+						{% endfor %}
+					</tr>
+				{% endfor %}
+				{% endwith %}
+			</table>
+
+			<table class="table my-4" style="width: 50%; overflow: hidden !important; border-radius: 999px !important;">
+				<tr id="scale-table-row"></tr>
+			</table>
+		</section>
+	</body>
+</html>
