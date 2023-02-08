@@ -22,7 +22,7 @@ class MatchResult(db.Model):  # type: ignore
     hang_4 = Column(BOOLEAN)
     played_defence = Column(BOOLEAN)
     won_match = Column(BOOLEAN)
-    notes = Column(String)
+    notes = Column(String(255))
     comp_loc = Column(VARCHAR(45))
     UniqueConstraint('match_number','team_number','comp_loc') 
 

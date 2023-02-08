@@ -1,0 +1,28 @@
+tr {
+	height: 80px;
+}
+
+td {
+	padding: 0 !important;
+	margin: 0 !important;
+	width: 80px;
+	font-size: 24px;
+	vertical-align: middle !important;
+	text-align: center !important;
+	font-weight: 900;
+	font-family: monospace;
+}
+
+.score-row td {
+	border-collapse: separate !important;
+	border: 8px solid white;
+	box-sizing: border-box;
+}
+
+.score-row td:nth-child(3), .score-row td:nth-child(6) {
+	border-right: 2px dashed gray !important;
+}
+
+.score-row:nth-child(3) {
+	border-top: 2px dashed gray !important;
+}
