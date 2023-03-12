@@ -112,6 +112,51 @@ const ApplyHeatmap = () => {
 	WriteRawCellData();
 };
 
+const InitializeData = file => {
+	const teamSelect = document.getElementById("team-select");
+	const periodSelect = document.getElementById("period-select");
+
+	while(teamSelect.childElementCount > 0) {
+		teamSelect.removeChild(teamSelect.firstElementChild);
+	}
+	
+	document.getElementById("file-response-text").innerText = `Loaded data file: ${file.name}`;
+	const dataFile = file;
+	try {
+		currentData = JSON.parse(dataFile);
+	} catch(e) {
+		document.getElementById("file-response-text").innerText = `Invalid object format.`;
+	}
+	
+	let teamList = new Set();			
+
+	currentData.forEach(match => {
+		teamList.add(match.team_number);
+	});
+	teamList = [...teamList].sort((a, b) => a - b);
+
+	teamList.forEach(team => {
+		const newTeamOption = document.createElement("option");
+		newTeamOption.innerText = team;
+		teamSelect.appendChild(newTeamOption);
+	});
+
+	PrepData();
+
+	teamSelect.addEventListener("change", () => {
+		currentTeam = teamSelect.value;
+		ApplyHeatmap();
+	});
+	periodSelect.addEventListener("change", () => {
+		currentPeriod = periodSelect.value;
+		ApplyHeatmap();
+	});
+	
+	currentPeriod = periodSelect.value;
+	currentTeam = teamList[0];
+	ApplyHeatmap();
+}
+
 const Initialize = () => {
 	const fileUpload = document.getElementById("scouting-data-upload");
 
@@ -120,53 +165,71 @@ const Initialize = () => {
 		const reader = new FileReader();
 		reader.readAsText(file);
 
-		const teamSelect = document.getElementById("team-select");
-		const periodSelect = document.getElementById("period-select");
-
-		while(teamSelect.childElementCount > 0) {
-			teamSelect.removeChild(teamSelect.firstElementChild);
-		}
-
 		reader.onerror = () => { document.getElementById("file-response-text").innerText = reader.result; };
 
 		reader.onload = () => {
-			document.getElementById("file-response-text").innerText = `Loaded data file: ${file.name}`;
-			const dataFile = reader.result;
-			try {
-				currentData = JSON.parse(dataFile);
-			} catch(e) {
-				document.getElementById("file-response-text").innerText = `Invalid object format.`;
-			}
-			
-			let teamList = new Set();			
-
-			currentData.forEach(match => {
-				teamList.add(match.team_number);
-			});
-			teamList = [...teamList].sort((a, b) => a - b);
-
-			teamList.forEach(team => {
-				const newTeamOption = document.createElement("option");
-				newTeamOption.innerText = team;
-				teamSelect.appendChild(newTeamOption);
-			});
-
-			PrepData();
-
-			teamSelect.addEventListener("change", () => {
-				currentTeam = teamSelect.value;
-				ApplyHeatmap();
-			});
-			periodSelect.addEventListener("change", () => {
-				currentPeriod = periodSelect.value;
-				ApplyHeatmap();
-			});
-			
-			currentPeriod = periodSelect.value;
-			currentTeam = teamList[0];
-			ApplyHeatmap();
+			InitializeData(reader.result);
 		};
 	});
+
+	InitializeData(JSON.stringify(imported_data));
 };
+
+// const Initialize = () => {
+// 	const fileUpload = document.getElementById("scouting-data-upload");
+
+// 	fileUpload.addEventListener("change", e => {
+// 		const file = fileUpload.files[0];
+// 		const reader = new FileReader();
+// 		reader.readAsText(file);
+
+// 		const teamSelect = document.getElementById("team-select");
+// 		const periodSelect = document.getElementById("period-select");
+
+// 		while(teamSelect.childElementCount > 0) {
+// 			teamSelect.removeChild(teamSelect.firstElementChild);
+// 		}
+
+// 		reader.onerror = () => { document.getElementById("file-response-text").innerText = reader.result; };
+
+// 		reader.onload = () => {
+// 			document.getElementById("file-response-text").innerText = `Loaded data file: ${file.name}`;
+// 			const dataFile = reader.result;
+// 			try {
+// 				currentData = JSON.parse(dataFile);
+// 			} catch(e) {
+// 				document.getElementById("file-response-text").innerText = `Invalid object format.`;
+// 			}
+			
+// 			let teamList = new Set();			
+
+// 			currentData.forEach(match => {
+// 				teamList.add(match.team_number);
+// 			});
+// 			teamList = [...teamList].sort((a, b) => a - b);
+
+// 			teamList.forEach(team => {
+// 				const newTeamOption = document.createElement("option");
+// 				newTeamOption.innerText = team;
+// 				teamSelect.appendChild(newTeamOption);
+// 			});
+
+// 			PrepData();
+
+// 			teamSelect.addEventListener("change", () => {
+// 				currentTeam = teamSelect.value;
+// 				ApplyHeatmap();
+// 			});
+// 			periodSelect.addEventListener("change", () => {
+// 				currentPeriod = periodSelect.value;
+// 				ApplyHeatmap();
+// 			});
+			
+// 			currentPeriod = periodSelect.value;
+// 			currentTeam = teamList[0];
+// 			ApplyHeatmap();
+// 		};
+// 	});
+// };
 
 window.addEventListener("DOMContentLoaded", Initialize);

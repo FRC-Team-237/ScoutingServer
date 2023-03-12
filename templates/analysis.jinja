@@ -6,11 +6,31 @@
 		<meta charset="UTF-8">
 		<link href="../static/css/bulma.min.css" rel="stylesheet">
 		<link href="../static/css/analysis_style.css" rel="stylesheet">
+		<link href="static/js/tabulator-master/dist/css/tabulator_midnight.min.css" rel="stylesheet">
+		<script type="text/javascript" src="static/js/tabulator-master/dist/js/tabulator.js"></script> 
+		<script>let imported_data={{score_result}}</script>
 		<script src="../static/js/analysis.js"></script>
+		
 	</head>
 	<body>
 		<section class="section is-flex is-align-items-center is-flex-direction-column">
 
+			<div id="moneyballTable"></div>
+			<script>
+    		var table = new Tabulator("#moneyballTable", {
+    		height:"511px",
+    		data: {{results}},
+    		columns:[
+    		{title:"Team Number", field:"team_number", sorter: "number" },
+    		{title:"Average Top Score", field:"avg_top", sorter: "number" },
+    		{title:"Top Standard Dev", field:"std_top", sorter: "number" },
+    		{title:"Average Mid Score", field:"avg_mid", sorter: "number" },
+			{title:"Low Standard Dev", field:"std_mid", sorter: "number" },
+    		{title:"Average Low Score", field:"avg_low", sorter: "number" },
+    		{title:"Low Standard Dev", field:"std_low", sorter: "number" }
+    		]
+		});
+    	</script>
 			<h3 class="title is-3">Scouting Heatmap</h3>
 
 			<div class="content" style="width: 480px">

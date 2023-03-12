@@ -1,7 +1,7 @@
 from flask import Blueprint, abort, current_app, render_template, jsonify
 from jinja2 import TemplateNotFound
 from sqlalchemy import func
-from dbObjects.tables import MoneyBall
+from dbObjects.views import MoneyBall
 from dbObjects.tablesV2 import TeamWatchResult, MatchWatchResult, ScoringRow
 from server import db
 
@@ -79,7 +79,8 @@ def match(match_no): # type: ignore
                         match_dict[team.alliance_color]['auto']['placement'] += (score_inc+1)
                     elif pos_obj > 0:
                         match_dict[team.alliance_color]['tele']['placement'] += score_inc
-        linkCalc(match_no=match_no,alliance_color='blue')
+        match_dict['blue']['links'] = linkCalc(match_no=match_no,alliance_color='blue')
+        match_dict['red']['links'] = linkCalc(match_no=match_no,alliance_color='red')
         return jsonify(match_dict), 200 
     
 def linkCalc(match_no,alliance_color):
@@ -95,6 +96,19 @@ def linkCalc(match_no,alliance_color):
             func.sum(ScoringRow.scoring_position_8),
             func.sum(ScoringRow.scoring_position_9)
             ).select_from(TeamWatchResult).join(TeamWatchResult.result).join(MatchWatchResult.scoring_rows, isouter=True).filter(TeamWatchResult.match_number == match_no).filter(TeamWatchResult.alliance_color == alliance_color).group_by(ScoringRow.row_position).all()
-        link_count = 0;
+        link_count = 0
         for row in alliance_score_grid:
-            
+            link_count += count_distinct_groups_of_three(row)
+        return link_count
+        
+
+def count_distinct_groups_of_three(arr):
+    count = 0
+    for i in range(len(arr) - 2):
+        first = True if arr[i] != 0 else False
+        second = True if arr[i+1] != 0 else False
+        third = True if arr[i+2] != 0 else False
+        if first and second and third:
+            count += 1
+            i += 3
+    return count

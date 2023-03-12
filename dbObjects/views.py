@@ -1,8 +1,23 @@
-from sqlalchemy import (BOOLEAN, VARCHAR, Column, Integer, String, Float,
+from sqlalchemy import (BOOLEAN, VARCHAR, Column, Integer, String, Float, FLOAT, 
                         UniqueConstraint, ForeignKey)
 
 from server import db
 
+class MatchPoints(db.Model): # type: ignore 
+    __tablename__ = 'scoring_avg_vw'
+    id = Column(Integer, primary_key=True)
+    team_number = Column(Integer)
+    row_position = Column(String(3))
+    tele_op_avg = Column(Integer)
+    auto_avg = Column(Integer)
+
+class TeamScoringRowView(db.Model): # type: ignore 
+    __tablename__ = 'team_row_scores_vw'
+    id = Column(Integer, primary_key=True)
+    team_number = Column(Integer)
+    top = Column(Integer)
+    mid = Column(Integer)
+    low = Column(Integer)
 
 class MatchResult(db.Model):  # type: ignore 
     __tablename__ = "match_results"

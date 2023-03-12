@@ -2,7 +2,7 @@ from server import db
 from flask import Blueprint, abort, current_app, render_template, request
 from wtforms import Form, BooleanField, StringField, validators, IntegerField, SubmitField, TextAreaField, SelectField
 from wtforms_sqlalchemy.orm import QuerySelectField
-from dbObjects.tables import MatchResult
+from dbObjects.views import MatchResult
 from dbObjects.tablesV2 import Competition, Settings
 from sqlalchemy import exc
 class SettingsForm(Form):
