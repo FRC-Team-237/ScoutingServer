@@ -19,6 +19,7 @@ def uploadResults():
     try: 
         for result in match_result_list: 
             for team in result['teamData']:
+
                 watch_data = MatchWatchResult(
                     auto_mobility = team['autonomous']['mobility'],
                     auto_charge = team['autonomous']['charge'],
@@ -35,41 +36,41 @@ def uploadResults():
                 )
                 row_high = ScoringRow(
                     row_position = 'top',
-                    scoring_position_1 = team['scoreMatrix']['high'][0],
-                    scoring_position_2 = team['scoreMatrix']['high'][1],
-                    scoring_position_3 = team['scoreMatrix']['high'][2],
-                    scoring_position_4 = team['scoreMatrix']['high'][3],
-                    scoring_position_5 = team['scoreMatrix']['high'][4],
-                    scoring_position_6 = team['scoreMatrix']['high'][5],
-                    scoring_position_7 = team['scoreMatrix']['high'][6],
-                    scoring_position_8 = team['scoreMatrix']['high'][7],
-                    scoring_position_9 = team['scoreMatrix']['high'][8],
+                    scoring_position_1 = team['scoreMatrix'].get('high', [0 for i in range(9)])[0],
+                    scoring_position_2 = team['scoreMatrix'].get('high', [0 for i in range(9)])[1],
+                    scoring_position_3 = team['scoreMatrix'].get('high', [0 for i in range(9)])[2],
+                    scoring_position_4 = team['scoreMatrix'].get('high', [0 for i in range(9)])[3],
+                    scoring_position_5 = team['scoreMatrix'].get('high', [0 for i in range(9)])[4],
+                    scoring_position_6 = team['scoreMatrix'].get('high', [0 for i in range(9)])[5],
+                    scoring_position_7 = team['scoreMatrix'].get('high', [0 for i in range(9)])[6],
+                    scoring_position_8 = team['scoreMatrix'].get('high', [0 for i in range(9)])[7],
+                    scoring_position_9 = team['scoreMatrix'].get('high', [0 for i in range(9)])[8],
                     match_result = watch_data
                     )
                 row_mid = ScoringRow(
                     row_position = 'mid',
-                    scoring_position_1 = team['scoreMatrix']['mid'][0],
-                    scoring_position_2 = team['scoreMatrix']['mid'][1],
-                    scoring_position_3 = team['scoreMatrix']['mid'][2],
-                    scoring_position_4 = team['scoreMatrix']['mid'][3],
-                    scoring_position_5 = team['scoreMatrix']['mid'][4],
-                    scoring_position_6 = team['scoreMatrix']['mid'][5],
-                    scoring_position_7 = team['scoreMatrix']['mid'][6],
-                    scoring_position_8 = team['scoreMatrix']['mid'][7],
-                    scoring_position_9 = team['scoreMatrix']['mid'][8],
+                    scoring_position_1 = team['scoreMatrix'].get('mid', [0 for i in range(9)])[0],
+                    scoring_position_2 = team['scoreMatrix'].get('mid', [0 for i in range(9)])[1],
+                    scoring_position_3 = team['scoreMatrix'].get('mid', [0 for i in range(9)])[2],
+                    scoring_position_4 = team['scoreMatrix'].get('mid', [0 for i in range(9)])[3],
+                    scoring_position_5 = team['scoreMatrix'].get('mid', [0 for i in range(9)])[4],
+                    scoring_position_6 = team['scoreMatrix'].get('mid', [0 for i in range(9)])[5],
+                    scoring_position_7 = team['scoreMatrix'].get('mid', [0 for i in range(9)])[6],
+                    scoring_position_8 = team['scoreMatrix'].get('mid', [0 for i in range(9)])[7],
+                    scoring_position_9 = team['scoreMatrix'].get('mid', [0 for i in range(9)])[8],
                     match_result = watch_data
                     )
                 row_low = ScoringRow(
                     row_position = 'low',
-                    scoring_position_1 = team['scoreMatrix']['low'][0],
-                    scoring_position_2 = team['scoreMatrix']['low'][1],
-                    scoring_position_3 = team['scoreMatrix']['low'][2],
-                    scoring_position_4 = team['scoreMatrix']['low'][3],
-                    scoring_position_5 = team['scoreMatrix']['low'][4],
-                    scoring_position_6 = team['scoreMatrix']['low'][5],
-                    scoring_position_7 = team['scoreMatrix']['low'][6],
-                    scoring_position_8 = team['scoreMatrix']['low'][7],
-                    scoring_position_9 = team['scoreMatrix']['low'][8],
+                    scoring_position_1 = team['scoreMatrix'].get('low', [0 for i in range(9)])[0],
+                    scoring_position_2 = team['scoreMatrix'].get('low', [0 for i in range(9)])[1],
+                    scoring_position_3 = team['scoreMatrix'].get('low', [0 for i in range(9)])[2],
+                    scoring_position_4 = team['scoreMatrix'].get('low', [0 for i in range(9)])[3],
+                    scoring_position_5 = team['scoreMatrix'].get('low', [0 for i in range(9)])[4],
+                    scoring_position_6 = team['scoreMatrix'].get('low', [0 for i in range(9)])[5],
+                    scoring_position_7 = team['scoreMatrix'].get('low', [0 for i in range(9)])[6],
+                    scoring_position_8 = team['scoreMatrix'].get('low', [0 for i in range(9)])[7],
+                    scoring_position_9 = team['scoreMatrix'].get('low', [0 for i in range(9)])[8],
                     match_result = watch_data
                 )
                 watch_data.watch_result = [team_data]
